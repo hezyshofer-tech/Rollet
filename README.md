@@ -1,52 +1,8 @@
-Skip to content
-hezyshofer-tech
-Rollet
-Repository navigation
-Code
-Issues
-Pull requests
-Agents
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Commit 81cde14
-hezyshofer-tech
-hezyshofer-tech
-authored
-now
-·
-·
-Verified
-Add files via upload
-main
-1 parent 
-013d931
- commit 
-81cde14
-1 file changed
-
-+698
-Lines changed: 698 additions & 0 deletions
-File tree
-Filter files…
-rool.html
-Search within code
- 
-‎rool.html‎
-+698
-Lines changed: 698 additions & 0 deletions
-Original file line number	Diff line number	Diff line change
-@@ -0,0 +1,698 @@
-<!DOCTYPE html>
-<html lang="ku" dir="rtl">
+<!DOCTYPE html><html lang="ku" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>چەرخی بەخت | Lucky Wheel</title>
-<style>
+<title>چەرخی بەخت | Clever Private High School</title><style>
 :root {
   --bg: #090d20;
   --panel: #121a35;
@@ -54,10 +10,17 @@ Original file line number	Diff line number	Diff line change
   --gold: #ffd166;
   --text: #f5f7ff;
 }
-* {
-  box-sizing: border-box;
+
+* { box-sizing: border-box; }
+
+html {
+  min-height: 100%;
+  background: #090d20;
 }
+
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-height: 100vh;
   font-family: Tahoma, Arial, sans-serif;
@@ -67,9 +30,26 @@ body {
     linear-gradient(145deg, #080b19, #111a36 65%, #090d20);
   text-align: center;
 }
+
+/* لۆگۆی قوتابخانە لە پاشبنەمای هەموو وێبسایتەکە */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("clever-logo.jpeg");
+  background-repeat: repeat;
+  background-size: 105px 105px;
+  background-position: center;
+  opacity: 0.09;
+}
+
 header {
+  position: relative;
   padding: 28px 15px 12px;
 }
+
 .logo {
   font-size: 13px;
   color: var(--cyan);
@@ -77,6 +57,7 @@ header {
   font-weight: bold;
   direction: ltr;
 }
+
 h1 {
   margin: 12px 0 8px;
   font-size: clamp(27px, 6vw, 43px);
@@ -85,35 +66,51 @@ h1 {
   -webkit-background-clip: text;
   color: transparent;
 }
+
 .subtitle {
   color: #aeb9dc;
   font-size: 14px;
   line-height: 1.9;
 }
+
 main {
-  width: min(100% - 24px, 1000px);
+  position: relative;
+  width: min(100% - 24px, 1100px);
   margin: 0 auto;
   padding-bottom: 35px;
 }
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr);
   gap: 20px;
   align-items: start;
 }
+
 .panel {
-  background: rgba(18, 26, 53, .88);
-  border: 1px solid rgba(125, 153, 255, .2);
+  background: rgba(18, 26, 53, .94);
+  border: 1px solid rgba(125, 153, 255, .25);
   border-radius: 24px;
   padding: 20px;
-  box-shadow: 0 15px 45px #0004;
+  box-shadow: 0 15px 45px #0006;
   min-width: 0;
 }
+
+/* چەرخ و ناونیشانی تایبەت */
+.wheel-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  gap: 15px;
+  align-items: center;
+  direction: ltr;
+}
+
 .wheel-area {
   position: relative;
-  width: min(100%, 470px);
+  width: 100%;
+  max-width: 470px;
   margin: 5px auto 18px;
-  padding: 13px;
+  padding: 10px;
   border-radius: 50%;
   background: linear-gradient(135deg, #fff0b0, #b78625, #fff2b9, #8c6013);
   box-shadow:
@@ -121,6 +118,7 @@ main {
     0 0 35px #ffcb5540,
     0 20px 50px #0007;
 }
+
 #wheel {
   display: block;
   width: 100%;
@@ -128,6 +126,7 @@ main {
   aspect-ratio: 1;
   border-radius: 50%;
 }
+
 .pointer {
   position: absolute;
   z-index: 3;
@@ -141,6 +140,7 @@ main {
   border-top: 42px solid #fff4cb;
   filter: drop-shadow(0 4px 3px #0009);
 }
+
 .hub {
   position: absolute;
   top: 50%;
@@ -159,6 +159,83 @@ main {
   font-weight: 900;
   pointer-events: none;
 }
+
+/* پانێڵی ئامادەی کلێڤەری */
+.side-title {
+  direction: rtl;
+  position: relative;
+  overflow: hidden;
+  padding: 22px 10px;
+  border: 1px solid #00e5ff66;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at top, #173a70 0%, transparent 75%),
+    linear-gradient(160deg, #101c3d, #080f27);
+  box-shadow: 0 0 20px #00e5ff22, inset 0 0 18px #00e5ff0c;
+  text-align: center;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.side-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 15%;
+  left: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00e5ff, #ffd166, transparent);
+  box-shadow: 0 0 12px #00e5ff;
+}
+
+.side-icon {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 10px #ffd16677);
+}
+
+.side-title h2 {
+  text-align: center;
+  margin: 0;
+  font-size: clamp(18px, 2.2vw, 25px);
+  line-height: 1.9;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 8px #00e5ff66, 0 0 18px #00e5ff22;
+}
+
+.side-title h2 span {
+  display: block;
+  color: #ffd166;
+  text-shadow: 0 0 8px #ffd16688, 0 0 20px #ffb52c44;
+}
+
+.side-line {
+  width: 65%;
+  height: 3px;
+  margin: 20px auto 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00e5ff, #ffd166);
+  box-shadow: 0 0 10px #00e5ff66;
+}
+
+.side-caption {
+  color: #b9c9f4;
+  font-size: 12px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.side-star {
+  color: #ffd166;
+  font-size: 22px;
+  margin-top: 12px;
+  text-shadow: 0 0 12px #ffd16688;
+}
+
 button {
   border: 0;
   font-family: inherit;
@@ -167,16 +244,11 @@ button {
   cursor: pointer;
   transition: transform .15s, filter .15s, opacity .15s;
 }
-button:hover {
-  filter: brightness(1.12);
-}
-button:active {
-  transform: scale(.97);
-}
-button:disabled {
-  cursor: not-allowed;
-  opacity: .55;
-}
+
+button:hover { filter: brightness(1.12); }
+button:active { transform: scale(.97); }
+button:disabled { cursor: not-allowed; opacity: .55; }
+
 .spin-btn {
   width: 100%;
   max-width: 350px;
@@ -187,20 +259,22 @@ button:disabled {
   background: linear-gradient(100deg, #ffe08a, #ffad35, #ffe08a);
   box-shadow: 0 7px 24px #ffb52c30;
 }
-.spin-btn span {
-  margin-left: 7px;
-}
+
+.spin-btn span { margin-left: 7px; }
+
 .small-note {
-  color: #929fc6;
+  color: #a6b2d6;
   font-size: 12px;
   margin-top: 14px;
   line-height: 1.9;
 }
-h2 {
+
+.panel > h2 {
   font-size: 19px;
   margin: 0 0 17px;
   text-align: right;
 }
+
 .field-label {
   display: block;
   text-align: right;
@@ -208,6 +282,7 @@ h2 {
   color: #bdc9eb;
   margin: 14px 0 8px;
 }
+
 textarea, input {
   width: 100%;
   padding: 13px;
@@ -218,41 +293,49 @@ textarea, input {
   font: inherit;
   outline: none;
 }
+
 textarea {
   resize: vertical;
   min-height: 180px;
   line-height: 1.9;
 }
+
 textarea:focus, input:focus {
   border-color: var(--cyan);
   box-shadow: 0 0 0 3px #00e5ff14;
 }
+
 .hint {
-  color: #929fc6;
+  color: #a6b2d6;
   text-align: right;
   font-size: 12px;
   line-height: 1.9;
   margin: 8px 0 14px;
 }
+
 .btn-row {
   display: flex;
   gap: 9px;
   flex-wrap: wrap;
 }
+
 .secondary-btn, .clear-btn {
   flex: 1;
   min-height: 45px;
   padding: 10px;
   border-radius: 12px;
 }
+
 .secondary-btn {
   background: #00c8df;
   color: #061321;
 }
+
 .clear-btn {
   background: #2a3454;
   color: #edf1ff;
 }
+
 .result {
   margin-top: 18px;
   border: 1px solid #ffd16666;
@@ -260,10 +343,12 @@ textarea:focus, input:focus {
   padding: 17px 12px;
   background: linear-gradient(135deg, #ffd16612, #ff9f4310);
 }
+
 .result-label {
   color: #b4c0e3;
   font-size: 12px;
 }
+
 #resultText {
   color: var(--gold);
   font-size: 24px;
@@ -271,21 +356,25 @@ textarea:focus, input:focus {
   margin-top: 9px;
   overflow-wrap: anywhere;
 }
+
 .history {
   margin-top: 16px;
   text-align: right;
   border-top: 1px solid #ffffff12;
   padding-top: 14px;
 }
+
 .history h3 {
   font-size: 14px;
   color: #cbd5f4;
 }
+
 #historyList {
   padding: 0;
   margin: 0;
   list-style: none;
 }
+
 #historyList li {
   padding: 9px 11px;
   margin-top: 7px;
@@ -297,77 +386,144 @@ textarea:focus, input:focus {
   font-size: 13px;
   overflow-wrap: anywhere;
 }
+
 #historyList small {
-  color: #8f9dc2;
+  color: #a6b2d6;
   flex-shrink: 0;
 }
+
 footer {
+  position: relative;
   padding: 5px 12px 24px;
-  color: #65749c;
+  color: #9ba8ce;
   font-size: 11px;
   direction: ltr;
 }
-@media (max-width: 700px) {
+
+@media (max-width: 850px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .panel {
-    padding: 16px;
+
+  .wheel-stage {
+    grid-template-columns: minmax(0, 1fr) 155px;
   }
-  .wheel-area {
-    width: min(100%, 410px);
+
+  .wheel-area { max-width: 430px; }
+}
+
+@media (max-width: 520px) {
+  header { padding-top: 23px; }
+  main { width: calc(100% - 16px); }
+  .panel { padding: 13px; }
+
+  .wheel-stage {
+    grid-template-columns: minmax(0, 1fr) 105px;
+    gap: 9px;
   }
-  header {
-    padding-top: 23px;
+
+  .wheel-area { padding: 6px; }
+
+  .side-title {
+    padding: 14px 6px;
+    border-radius: 15px;
+  }
+
+  .side-icon {
+    font-size: 27px;
+    margin-bottom: 10px;
+  }
+
+  .side-title h2 {
+    font-size: 17px;
+    line-height: 2;
+  }
+
+  .side-line { margin: 12px auto 9px; }
+  .side-caption { font-size: 10px; line-height: 1.8; }
+  .side-star { font-size: 18px; }
+  #resultText { font-size: 21px; }
+
+  body::before {
+    background-size: 82px 82px;
+    opacity: 0.08;
   }
 }
+
+@media (max-width: 360px) {
+  .wheel-stage {
+    grid-template-columns: minmax(0, 1fr) 88px;
+    gap: 7px;
+  }
+
+  .side-title h2 { font-size: 15px; }
+  .side-caption { font-size: 9px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  button {
-    transition: none;
-  }
+  button { transition: none; }
 }
-</style>
-</head>
-<body>
-<header>
+</style></head><body><header>
   <div class="logo">LUCKY WHEEL</div>
   <h1>🎡 چەرخی بەخت</h1>
   <div class="subtitle">
     چەرخەکە بسوڕێنە و بزانە بەخت چی بۆی هەڵدەبژێرێت!
   </div>
-</header>
-<main>
-  <div class="layout">
-    <section class="panel">
-      <div class="wheel-area">
-        <div class="pointer"></div>
-        <canvas id="wheel" width="800" height="800"
-          aria-label="چەرخی بەخت"></canvas>
-        <div class="hub">★</div>
-      </div>
-      <button class="spin-btn" id="spinBtn">
-        <span>🎯</span> چەرخەکە بسوڕێنە!
-      </button>
-      <div class="small-note">
-        هەر جارێک ئەنجامێکی هەڕەمەکی هەڵدەبژێردرێت.
-      </div>
-      <div class="result" aria-live="polite">
-        <div class="result-label">✨ ئەنجامی کۆتایی</div>
-        <div id="resultText">ئامادەیە بۆ سوڕان!</div>
-      </div>
-      <div class="history">
-        <h3>📜 مێژووی ئەنجامەکان</h3>
-        <ul id="historyList">
-          <li><span>هێشتا هیچ ئەنجامێک نییە</span></li>
-        </ul>
-      </div>
-    </section>
-    <section class="panel">
-      <h2>⚙️ ڕێکخستنی چەرخ</h2>
-      <label class="field-label" for="itemsInput">
-        ناوەکانی ناو چەرخ (هەر ناوێک لە ڕیزێکی جیاواز)
-      </label>
-      <textarea id="itemsInput" spellcheck="false">خەڵاتی یەکەم
+</header><main>
+  <div class="layout"><section class="panel">
+  <div class="wheel-stage">
+
+    <div class="wheel-area">
+      <div class="pointer"></div>
+      <canvas id="wheel" width="800" height="800"
+        aria-label="چەرخی بەخت"></canvas>
+      <div class="hub">★</div>
+    </div>
+
+    <aside class="side-title">
+      <span class="side-icon">🏆</span>
+      <h2>
+        ئامادەی
+        <span>کلێڤەری</span>
+        ناحکومی
+      </h2>
+      <div class="side-line"></div>
+      <div class="side-caption">بەخت لەگەڵ تۆ بێت</div>
+      <div class="side-star">✦ ★ ✦</div>
+    </aside>
+
+  </div>
+
+  <button class="spin-btn" id="spinBtn">
+    <span>🎯</span> چەرخەکە بسوڕێنە!
+  </button>
+
+  <div class="small-note">
+    هەر جارێک ئەنجامێکی هەڕەمەکی هەڵدەبژێردرێت.
+  </div>
+
+  <div class="result" aria-live="polite">
+    <div class="result-label">✨ ئەنجامی کۆتایی</div>
+    <div id="resultText">ئامادەیە بۆ سوڕان!</div>
+  </div>
+
+  <div class="history">
+    <h3>📜 مێژووی ئەنجامەکان</h3>
+    <ul id="historyList">
+      <li><span>هێشتا هیچ ئەنجامێک نییە</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>⚙️ ڕێکخستنی چەرخ</h2>
+
+  <label class="field-label" for="itemsInput">
+    ناوەکانی ناو چەرخ (هەر ناوێک لە ڕیزێکی جیاواز)
+  </label>
+
+  <textarea id="itemsInput" spellcheck="false">خەڵاتی یەکەم
+
 خەڵاتی دووەم
 خەڵاتی سێیەم
 جارێکی تر هەوڵ بدە
@@ -377,36 +533,41 @@ footer {
 بەختەوەر بوویت!
 خەڵاتی گەورە
 سوپاس بۆ بەشداری</textarea>
-      <div class="hint">
-        دەتوانیت ناوەکان بگۆڕیت، زیاد بکەیت یان بسڕیتەوە.
-        کەمترین ژمارە ٢ ناوە و زۆرترین ژمارە ١٠٠ ناوە.
-      </div>
-      <div class="btn-row">
-        <button class="secondary-btn" id="updateBtn">
-          ✓ نوێکردنەوەی چەرخ
-        </button>
-        <button class="clear-btn" id="resetBtn">
-          ↻ سفرکردنەوە
-        </button>
-      </div>
-      <label class="field-label" for="spinCount">
-        ژمارەی سوڕانەکان پێش وەستان
-      </label>
-      <input id="spinCount" type="number"
-        min="3" max="12" value="6">
-      <div class="hint">
-        ژمارەیەکی زۆرتر واتە چەرخەکە زیاتر دەسوڕێتەوە.
-        ئەنجامەکە بە تەنها لەسەر چەرخ دیاری دەکرێت.
-      </div>
-    </section>
+
+  <div class="hint">
+    دەتوانیت ناوەکان بگۆڕیت، زیاد بکەیت یان بسڕیتەوە.
+    کەمترین ژمارە ٢ ناوە و زۆرترین ژمارە ١٠٠ ناوە.
   </div>
-</main>
-<footer>
-  LUCKY WHEEL · HAVE FUN · HTML / CSS / JAVASCRIPT
-</footer>
-<script>
+
+  <div class="btn-row">
+    <button class="secondary-btn" id="updateBtn">
+      ✓ نوێکردنەوەی چەرخ
+    </button>
+    <button class="clear-btn" id="resetBtn">
+      ↻ سفرکردنەوە
+    </button>
+  </div>
+
+  <label class="field-label" for="spinCount">
+    ژمارەی سوڕانەکان پێش وەستان
+  </label>
+
+  <input id="spinCount" type="number"
+    min="3" max="12" value="6">
+
+  <div class="hint">
+    ژمارەیەکی زۆرتر واتە چەرخەکە زیاتر دەسوڕێتەوە.
+    ئەنجامەکە بە تەنها لەسەر چەرخ دیاری دەکرێت.
+  </div>
+</section>
+
+  </div>
+</main><footer>
+  LUCKY WHEEL · CLEVER PRIVATE HIGH SCHOOL
+</footer><script>
 (() => {
   "use strict";
+
   const canvas = document.getElementById("wheel");
   const ctx = canvas.getContext("2d");
   const spinBtn = document.getElementById("spinBtn");
@@ -416,73 +577,90 @@ footer {
   const spinCountInput = document.getElementById("spinCount");
   const resultText = document.getElementById("resultText");
   const historyList = document.getElementById("historyList");
+
   const COLORS = [
     "#ff477e", "#7657ff", "#00bcd4", "#ff9f1c",
     "#13b981", "#ec4899", "#3b82f6", "#eab308",
     "#8b5cf6", "#f43f5e", "#14b8a6", "#f97316",
     "#6366f1", "#84cc16", "#d946ef", "#06b6d4"
   ];
+
   const TAU = Math.PI * 2;
   const START_ANGLE = -Math.PI / 2;
+
   let items = [];
   let rotation = 0;
   let spinning = false;
   let animationId = null;
   let history = [];
+
   function normalizeAngle(angle) {
     return ((angle % TAU) + TAU) % TAU;
   }
+
   function getItemsFromInput() {
     return itemsInput.value
       .split(/\r?\n/)
       .map(item => item.trim())
       .filter(Boolean);
   }
+
   function drawWheel() {
     const size = canvas.width;
     const center = size / 2;
     const radius = size / 2 - 8;
+
     ctx.clearRect(0, 0, size, size);
     if (items.length === 0) return;
+
     const slice = TAU / items.length;
+
     for (let i = 0; i < items.length; i++) {
       const start = START_ANGLE + rotation + i * slice;
       const end = start + slice;
       const middle = start + slice / 2;
+
       ctx.beginPath();
       ctx.moveTo(center, center);
       ctx.arc(center, center, radius, start, end);
       ctx.closePath();
       ctx.fillStyle = COLORS[i % COLORS.length];
       ctx.fill();
+
       ctx.strokeStyle = "rgba(255,255,255,0.85)";
       ctx.lineWidth = 3;
       ctx.stroke();
+
       ctx.save();
       ctx.translate(center, center);
       ctx.rotate(middle);
+
       const fontSize = Math.max(
         13,
         Math.min(27, 310 / Math.max(items.length, 1))
       );
+
       ctx.font = `bold ${fontSize}px Tahoma, Arial, sans-serif`;
       ctx.fillStyle = "#ffffff";
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
       ctx.shadowColor = "#0008";
       ctx.shadowBlur = 3;
+
       let label = items[i];
       const maxWidth = radius * 0.64;
+
       while (
         label.length > 2 &&
         ctx.measureText(label).width > maxWidth
       ) {
         label = label.slice(0, -2) + "…";
       }
+
       ctx.fillText(label, radius * 0.82, 0, maxWidth);
       ctx.restore();
     }
-    // ناوەڕاستی چەرخ
+
     ctx.beginPath();
     ctx.arc(center, center, radius * 0.105, 0, TAU);
     ctx.fillStyle = "#fff1b8";
@@ -491,28 +669,35 @@ footer {
     ctx.strokeStyle = "#9b6c17";
     ctx.stroke();
   }
+
   function secureRandomIndex(length) {
     if (length <= 1) return 0;
-    // بەکارهێنانی random ـی وێبگەڕ بۆ هەڵبژاردنی یەکسان
+
     if (window.crypto && window.crypto.getRandomValues) {
       const range = 0x100000000;
       const limit = range - (range % length);
       const value = new Uint32Array(1);
+
       do {
         window.crypto.getRandomValues(value);
       } while (value[0] >= limit);
+
       return value[0] % length;
     }
+
     return Math.floor(Math.random() * length);
   }
+
   function selectedIndex() {
     const slice = TAU / items.length;
     const relative = normalizeAngle(-rotation);
+
     return Math.min(
       items.length - 1,
       Math.floor(relative / slice)
     );
   }
+
   function setBusy(busy) {
     spinning = busy;
     spinBtn.disabled = busy;
@@ -521,105 +706,125 @@ footer {
     itemsInput.disabled = busy;
     spinCountInput.disabled = busy;
   }
+
   function addHistory(name) {
     history.unshift({
       name,
       time: new Date().toLocaleTimeString()
     });
+
     history = history.slice(0, 10);
     historyList.replaceChildren();
+
     history.forEach((entry, index) => {
       const li = document.createElement("li");
       const nameSpan = document.createElement("span");
       const timeSpan = document.createElement("small");
+
       nameSpan.textContent = `${index + 1}. ${entry.name}`;
       timeSpan.textContent = entry.time;
+
       li.append(nameSpan, timeSpan);
       historyList.appendChild(li);
     });
   }
+
   function updateWheel() {
     if (spinning) return;
+
     const nextItems = getItemsFromInput();
+
     if (nextItems.length < 2) {
       alert("تکایە لانیکەم دوو ناو بنووسە.");
       return;
     }
+
     if (nextItems.length > 100) {
       alert("تکایە زیاتر لە ١٠٠ ناو مەنووسە.");
       return;
     }
+
     items = nextItems;
     rotation = 0;
     resultText.textContent = "ئامادەیە بۆ سوڕان!";
     drawWheel();
   }
+
   function spinWheel() {
     if (spinning || items.length < 2) return;
+
     let turns = Number(spinCountInput.value);
     if (!Number.isFinite(turns)) turns = 6;
+
     turns = Math.max(3, Math.min(12, Math.floor(turns)));
     spinCountInput.value = String(turns);
+
     const winner = secureRandomIndex(items.length);
     const slice = TAU / items.length;
-    // ناوەندی بەشی براوە دەهێنینە ژێر نیشانەی سەرەوە
+
     const targetAngle = normalizeAngle(-(winner + 0.5) * slice);
     const current = normalizeAngle(rotation);
     const extraAngle = normalizeAngle(targetAngle - current);
+
     const startRotation = rotation;
     const totalRotation = turns * TAU + extraAngle;
     const duration = 4800 + turns * 180;
     const startTime = performance.now();
+
     resultText.textContent = "چەرخەکە خەریکە دەسوڕێتەوە... ✨";
     setBusy(true);
+
     function animate(now) {
       const progress = Math.min(1, (now - startTime) / duration);
-      // Ease-out cubic: لە کۆتاییدا بە هێواشی دەوەستێت
       const eased = 1 - Math.pow(1 - progress, 3);
+
       rotation = startRotation + totalRotation * eased;
       drawWheel();
+
       if (progress < 1) {
         animationId = requestAnimationFrame(animate);
         return;
       }
+
       rotation = normalizeAngle(targetAngle);
       drawWheel();
+
       const actualWinner = selectedIndex();
       const prize = items[actualWinner];
+
       resultText.textContent = prize;
       addHistory(prize);
       setBusy(false);
       animationId = null;
     }
+
     animationId = requestAnimationFrame(animate);
   }
+
   function resetWheel() {
     if (spinning) return;
+
     rotation = 0;
     history = [];
     historyList.replaceChildren();
+
     const li = document.createElement("li");
     const span = document.createElement("span");
+
     span.textContent = "هێشتا هیچ ئەنجامێک نییە";
     li.appendChild(span);
     historyList.appendChild(li);
+
     resultText.textContent = "ئامادەیە بۆ سوڕان!";
     drawWheel();
   }
+
   spinBtn.addEventListener("click", spinWheel);
   updateBtn.addEventListener("click", updateWheel);
   resetBtn.addEventListener("click", resetWheel);
+
   items = getItemsFromInput();
   drawWheel();
 })();
-</script>
-</body>
+</script></body>
 </html>
-0 commit comments
-Comments
-0
- (0)
-Comment
-You're not receiving notifications from this thread.
-
-There are no files selected for viewing
