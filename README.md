@@ -107,7 +107,7 @@ main {
 
 .wheel-area {
   position: relative;
-  width: 600%;
+  width: 150%;
   max-width: 470px;
   margin: 5px auto 18px;
   padding: 10px;
