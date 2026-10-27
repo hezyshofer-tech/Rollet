@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ئامادەیی کلێڤەری ناحکومی  | Clever Private High School</title><style>
+<title>چەرخی بەخت | Clever Private High School</title><style>
 :root {
   --bg: #090d20;
   --panel: #121a35;
@@ -107,7 +107,7 @@ main {
 
 .wheel-area {
   position: relative;
-  width: 150%;
+  width: 100%;
   max-width: 470px;
   margin: 5px auto 18px;
   padding: 10px;
